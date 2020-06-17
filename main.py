@@ -288,6 +288,12 @@ def main():
             mes=bot_checker.send_message(741710024, "Укажите причину отказа анкете №"+l_tt[1]+"(например '1.3;Проблема' )")
             bot_checker.send_message(405027580, "Укажите причину отказа анкете №"+l_tt[1]+"(например '1.3;Проблема' )")
             bot_checker.register_next_step_handler(mes, cause_refusal)
+    def list_to_str_inf(l):
+        s=""
+        for i in range(len(l)):
+            s=str(s+str(l[i]+"\n"))
+            
+        return s
     @bot_checker.message_handler(content_types=['text'])
     def ratata(message):
         l=message.text.split(";")
@@ -321,11 +327,11 @@ def main():
                 bot_checker.send_message(message.from_user.id, comm_admin)
             elif len(message.text.split(" "))==2 and message.text.split(" ")[0].upper()=="INFO":
                 anketa=message.text.split(" ")[1]
-                s=get_info_po_ankete(anketa,osn_base)
+                s=list_to_str_inf(get_info_po_ankete(anketa,osn_base))
                 if test_int(s)==False:
-                    bot.send_message(message.from_user.id,s)
+                    bot_checker.send_message(message.from_user.id,s)
                 else:
-                    bot.send_message(message.from_user.id,"Данная анкета не найдена")
+                    bot_checker.send_message(message.from_user.id,"Данная анкета не найдена")
                 
             elif plus_check(l[0]):
                 l1=l[0].split("+")
