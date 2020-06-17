@@ -291,7 +291,7 @@ def main():
     def list_to_str_inf(l):
         s=""
         for i in range(len(l)):
-            s=str(s+str(l[i]+"\n"))
+            s=str(str(s)+str(l[i])+"\n")
             
         return s
     @bot_checker.message_handler(content_types=['text'])
