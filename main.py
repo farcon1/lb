@@ -319,13 +319,13 @@ def main():
             elif l[0].lower()=="off":off(message)
             elif l[0]=="/info":
                 bot_checker.send_message(message.from_user.id, comm_admin)
-            elif len(call.data.split(" "))==2 and call.data.split(" ")[0].upper()=="INFO":
-                anketa=call.data.split(" ")[1]
+            elif len(message.text.split(" "))==2 and message.text.split(" ")[0].upper()=="INFO":
+                anketa=message.text.split(" ")[1]
                 s=get_info_po_ankete(anketa,osn_base)
                 if test_int(s)==False:
-                    bot.send_message(call.message.chat.id,s)
+                    bot.send_message(message.from_user.id,s)
                 else:
-                    bot.send_message(call.message.chat.id,"Данная анкета не найдена")
+                    bot.send_message(message.from_user.id,"Данная анкета не найдена")
                 
             elif plus_check(l[0]):
                 l1=l[0].split("+")
